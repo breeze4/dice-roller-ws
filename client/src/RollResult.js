@@ -8,7 +8,7 @@ class RollResult extends PureComponent {
       <div>Roll results
         {this.props.rolls.map((result, index) => {
           return (
-            <div key={index}>{result}</div>
+            <div key={index}>{`d${result.dice}`}: {result.roll}</div>
           )
         })}
       </div>

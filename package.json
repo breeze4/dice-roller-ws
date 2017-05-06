@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "(cd client && exec yarn build) && git add .",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

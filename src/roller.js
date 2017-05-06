@@ -8,7 +8,10 @@ const roll = (dice, quantity) => {
   const result = [];
   for (let i = 1; i <= quantity; i++) {
     const roll = rollDice(dice);
-    result.push(roll);
+    result.push({
+      roll,
+      dice: dice
+    });
   }
   return result;
 }
