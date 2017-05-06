@@ -1,10 +1,16 @@
-const http = require('http');
+const express = require('express');
+const path = require('path');
 const url = require('url');
 const querystring = require('querystring');
 const Pusher = require('pusher');
-const {roll} = require('./roller');
 
+const {roll} = require('./src/roller');
+
+const app = express();
 const port = process.env.PORT || 3001;
+app.set('port', port);
+
+app.use(express.static(__dirname + '/client/build'));
 
 const pusher = new Pusher({
   appId: '336160',
@@ -27,12 +33,12 @@ const requestHandler = (request, response) => {
   response.end(JSON.stringify(result));
 }
 
-const server = http.createServer(requestHandler)
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
-server.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
+app.get('/api/roll', requestHandler);
 
-  console.log(`server is listening on ${port}`)
-})
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
