@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-
 
 class RollResult extends PureComponent {
   render() {
@@ -15,9 +13,5 @@ class RollResult extends PureComponent {
     );
   }
 }
-
-RollResult.propTypes = {
-  rolls: PropTypes.arrayOf(PropTypes.number)
-};
 
 export default RollResult;
