@@ -7,4 +7,14 @@ cache:
     - node_modules
     - client/node_modules
 script:
-  - cd client && yarn
+  - "echo 'installation dependencies...'"
+  - cd client
+  - yarn
+before_deploy: 
+  - "echo 'building production client files...'"
+  - heroku --version
+deploy:
+  provider: heroku
+  api_key:
+    secure: RoXE7I65ALWPlgjTK6dgakflpJrQyySFJJchMtgVrMZTxP1s5dOpex1Xp3B060KgAZSOwL6ATSd0peapN5KXwyrWnqt85Eswf414iJCkXmaU+vWZXMF/fsNPwougBkC3TlEBKCK/lkwFkRce//WlUsLUJO+ULAsn1A+KaJLfOb7RgjcSMV5Q1a91CHKTU63A0X9jAv6KriDirvFXRbnkAYaeuxiZo9ODP24WLVpfTbjqYRJQTWCj/9EzOeefEPiWGpMl6hXXDlClh6cU9+KRCQktvAy/IXkrjuRVrH5AtoSt4QTrlewGmpCvCdFZJOm4E0YLA8RRYE3i4EXtjFwjo8IRFAYGs7XjQQVvXuyhn95Ci+uL8xfORou5n6YFUoISvjlHtz1cvwCJxpw+9PZpSJmHbtCN22hbvevSLntsmUkZx2UzZDrWv2iI3J6Fa+9YjpUZ7+duhRdzf9NcajHePTKesXwcL16hFNoNF01YxxAdRutdfIRgRyorjk+BCperykZTTdjTD0SIDBm8PLH/YDenQPCP8Arpn3nqrjnnxvF3UAcIWTS6ekaDyMeluitETbEGoR38EKvra1wiXSMg0x8m44TD5JeBSyQt70zGZpSL1rM9nDgwDOIaF7qv9qDN51u5YqyHn+QPHWARe2BgSEqhlZaSwDt6xRXWyKAisIY=
+  app: dry-river-64113
