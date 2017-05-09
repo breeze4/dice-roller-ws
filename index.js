@@ -4,13 +4,16 @@ const url = require('url');
 const querystring = require('querystring');
 const Pusher = require('pusher');
 
-const {roll} = require('./src/roller');
+const { roll } = require('./src/roller');
 
 const app = express();
 const port = process.env.PORT || 3001;
 app.set('port', port);
 
-app.use(express.static(__dirname + '/client/build'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+// app.use(express.static(__dirname + '/client/build'));
 
 const pusher = new Pusher({
   appId: '336160',
@@ -23,7 +26,7 @@ const requestHandler = (request, response) => {
   console.log(request.url)
   const parsedUrl = url.parse(request.url);
   const parsedQuery = querystring.parse(parsedUrl.query);
-  const {dice, quantity} = parsedQuery;
+  const { dice, quantity } = parsedQuery;
   const result = roll(dice, quantity);
 
   pusher.trigger('my-channel', 'my-event', {
@@ -33,12 +36,12 @@ const requestHandler = (request, response) => {
   response.end(JSON.stringify(result));
 }
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 app.get('/api/roll', requestHandler);
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+app.listen(app.get('port'), function () {
+  console.log(`Find the server at: http://localhost:${app.get('port')}/`);
 });

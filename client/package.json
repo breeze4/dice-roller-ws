@@ -2,6 +2,7 @@
   "name": "dice-roller",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.16.1",
     "prop-types": "^15.5.8",

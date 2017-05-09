@@ -1,11 +1,11 @@
 {
   "name": "dice-roller-server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "(cd client && exec yarn build) && git add .",
-    "start": "(cd client && exec yarn start) & node index.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node index.js",
+    "client": "node start-client.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,5 +13,8 @@
   "dependencies": {
     "express": "^4.15.2",
     "pusher": "^1.5.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0"
   }
 }
