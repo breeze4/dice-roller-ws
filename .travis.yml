@@ -12,7 +12,7 @@ script:
   - yarn
 before_deploy: 
   - "echo 'building production client files...'"
-  - heroku --version
+  # - heroku --version
 deploy:
   provider: heroku
   api_key:
