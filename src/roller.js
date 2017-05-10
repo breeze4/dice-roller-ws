@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const rollDice = (dice) => {
   min = 1;
   max = Math.floor(dice);
@@ -10,7 +12,8 @@ const roll = (dice, quantity) => {
     const roll = rollDice(dice);
     result.push({
       roll,
-      dice: dice
+      dice: dice,
+      timestamp: moment()
     });
   }
   return result;
