@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment';
 
+import './RollResult.css';
+
 class RollResult extends PureComponent {
   constructor(props) {
     super(props);
@@ -16,8 +18,9 @@ class RollResult extends PureComponent {
           const relativeTime = moment(result.timestamp).fromNow();
           return (
             <div key={index}>
-              {`d${result.dice}`}: {result.roll} - <small>{relativeTime}</small>
-              </div>
+              {`d${result.dice}`}: {result.roll}
+              <span className="result-timestamp"> rolled {relativeTime}</span>
+            </div>
           )
         })}
       </div>
@@ -28,7 +31,7 @@ class RollResult extends PureComponent {
       this.setState({
         dirty: !this.state.dirty
       })
-    }, 5000) 
+    }, 5000)
   }
 }
 
