@@ -2,6 +2,13 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 
 class RollResult extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dirty: false
+    }
+  }
   render() {
     return (
       <div>Roll results
@@ -15,6 +22,13 @@ class RollResult extends PureComponent {
         })}
       </div>
     );
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        dirty: !this.state.dirty
+      })
+    }, 5000) 
   }
 }
 
