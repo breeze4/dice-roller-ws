@@ -14,6 +14,8 @@ before_deploy:
   - "echo 'building production client files...'"
   - sed -i '/build/d' ./.gitignore # remove /build from the client gitignore
   - yarn build
+  - git config --global user.email "ambiturner0@gmail.com"
+  - git config --global user.name "Travis Bot"
   - git add ./build
   - git commit -m "Deployment - `date`"
 deploy:
