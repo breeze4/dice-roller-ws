@@ -12,7 +12,8 @@ script:
   - yarn
 before_deploy: 
   - "echo 'building production client files...'"
-  # - heroku --version
+  - pwd
+  # -sed -i '/build/d' ./client/.gitignore # remove /build from the client gitignore
 deploy:
   provider: heroku
   api_key:
